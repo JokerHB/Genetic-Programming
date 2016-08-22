@@ -13,16 +13,44 @@ class Tree(object):
         self.children = []
         self.fitness = 0
         self.val = 0
-        self.maxDeep = 0
         self.public = PublicDefine()
 
     def makeTree(self, deep, termSet, funcSet):
         self.root = Node()
         if random() <= 0.5:
-            genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root, method=self.public.grow, deep=deep, prob=random())
+            genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root,
+                                 method=self.public.grow, deep=deep, prob=random())
         else:
-            genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root, method=self.public.full, deep=deep, prob=random())
+            genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root,
+                                 method=self.public.full, deep=deep, prob=random())
 
         if self.root.getType() == self.public.func:
             for i in range(self.root.getVal().getArity()):
-                child = Node()
+                child = Tree()
+                if random() <= 0.5:
+                    genNode.generateNode(termSet=termSet, funcSet=funcSet, node=child.root,
+                                         method=self.public.grow,deep=deep - 1, prob=random())
+                else:
+                    genNode.generateNode(termSet=termSet, funcSet=funcSet, node=child.root,
+                                         method=self.public.full,deep=deep - 1, prob=random())
+                child.makeTree(deep=deep - 1, termSet=termSet, funcSet= funcSet)
+                self.children.append(child)
+
+    def calVal(self, varList):
+        if self.root.getType() == self.public.const:
+            self.val = self.root.getVal()
+            return self.val
+        elif self.root.getType == self.public.var:
+            try:
+                self.val = varList[self.root.getVal]
+            except Exception, e:
+                print e
+                self.val = 0
+            return self.val
+        else:
+            vars = []
+            for i in range(self.root.getVal().getArity()):
+                tmp_var = self.children[i].calVal(varList=varList)
+                vars.append(tmp_var)
+            self.val = self.root.getVal().runFunc(vars)
+            return self.val

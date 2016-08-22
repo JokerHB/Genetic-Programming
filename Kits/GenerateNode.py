@@ -1,5 +1,4 @@
 from random import random
-from collections import namedtuple
 from PublicDefine import PublicDefine
 
 def generateNode(termSet, funcSet, node, method, deep, prob):
