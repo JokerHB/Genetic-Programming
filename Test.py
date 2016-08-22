@@ -40,3 +40,5 @@ print p.grow
 print random()
 
 print range(10)
+
+print 1 % 0

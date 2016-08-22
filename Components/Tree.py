@@ -27,6 +27,7 @@ class Tree(object):
         if self.root.getType() == self.public.func:
             for i in range(self.root.getVal().getArity()):
                 child = Tree()
+                child.root = Node()
                 if random() <= 0.5:
                     genNode.generateNode(termSet=termSet, funcSet=funcSet, node=child.root,
                                          method=self.public.grow,deep=deep - 1, prob=random())
@@ -40,16 +41,16 @@ class Tree(object):
         if self.root.getType() == self.public.const:
             self.val = self.root.getVal()
             return self.val
-        elif self.root.getType == self.public.var:
+        elif self.root.getType() == self.public.var:
             try:
-                self.val = varList[self.root.getVal]
+                self.val = varList[self.root.getVal()]
             except Exception, e:
-                print e
+                print ('Tree.calVal', e)
                 self.val = 0
             return self.val
         else:
             vars = []
-            for i in range(self.root.getVal().getArity()):
+            for i in range(int(self.root.getVal().getArity())):
                 tmp_var = self.children[i].calVal(varList=varList)
                 vars.append(tmp_var)
             self.val = self.root.getVal().runFunc(vars)

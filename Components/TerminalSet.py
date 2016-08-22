@@ -13,7 +13,7 @@ class TerminalSet(object):
             _ = self.varSet[index]
             return _
         except IndexError, e:
-            print e
+            print ('TerminalSet.getVar', e)
             return self.varSet[0]
 
     def getConst(self, index):
@@ -23,5 +23,5 @@ class TerminalSet(object):
             _ = self.constSet[index]
             return _
         except IndexError, e:
-            print e
+            print ('TerminalSet.getConst', e)
             return self.constSet[0]

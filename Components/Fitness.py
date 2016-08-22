@@ -7,5 +7,5 @@ class Fitness(object):
             _ = self.func(varList)
             return _
         except Exception, e:
-            print e
+            print ('Fitness.getFitness', e)
             return 0

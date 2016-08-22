@@ -18,5 +18,5 @@ class FunctionSet(object):
             _ = self.func(varList)
             return _
         except Exception, e:
-            print e
+            print ('FunctionSet.runFunc' ,e)
             return 0
