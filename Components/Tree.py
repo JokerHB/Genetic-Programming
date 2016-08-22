@@ -13,6 +13,7 @@ class Tree(object):
         self.children = []
         self.fitness = 0
         self.val = 0
+        self.toString = ''
         self.public = PublicDefine()
 
     def makeTree(self, deep, termSet, funcSet):
@@ -25,6 +26,7 @@ class Tree(object):
                                  method=self.public.full, deep=deep, prob=random())
 
         if self.root.getType() == self.public.func:
+            self.toString = self.root.getVal().getName()
             for i in range(self.root.getVal().getArity()):
                 child = Tree()
                 child.root = Node()
@@ -55,3 +57,17 @@ class Tree(object):
                 vars.append(tmp_var)
             self.val = self.root.getVal().runFunc(vars)
             return self.val
+
+    def displayTree(self, deep = 1):
+        content = ' ' * deep
+        if self.toString != '':
+            content += self.toString + ': ' + str(self.val) + '\n'
+        else:
+            self.toString = str(self.root.getVal())
+            content += self.toString + '\n'
+        for child in self.children:
+            _content = child.displayTree(deep + 2)
+            content += _content
+        return content
+
+

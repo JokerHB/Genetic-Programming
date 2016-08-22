@@ -41,6 +41,8 @@ funcSet = [add_func, sub_func, mul_func, mod_func]
 
 tree = Tree()
 
-tree.makeTree(2, termSet=termSet, funcSet=funcSet)
+tree.makeTree(deep=3, termSet=termSet, funcSet=funcSet)
 
 print tree.calVal({'x':2, 'y':1})
+
+print tree.displayTree()
