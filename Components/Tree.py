@@ -40,6 +40,7 @@ class Tree(object):
                 self.children.append(child)
 
     def calVal(self, varList):
+        'varList is a dictionary of x:1, y: 2, z: 3 ...'
         if self.root.getType() == self.public.const:
             self.val = self.root.getVal()
             return self.val
@@ -69,5 +70,3 @@ class Tree(object):
             _content = child.displayTree(deep + 2)
             content += _content
         return content
-
-
