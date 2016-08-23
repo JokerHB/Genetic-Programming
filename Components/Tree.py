@@ -4,40 +4,39 @@ from Kits.PublicDefine import PublicDefine
 
 import Kits.GenerateNode as genNode
 
+public = PublicDefine()
 
 class Tree(object):
     def __init__(self):
-        self.root = None
+        self.root = Node()
         self.children = []
         self.fitness = 0
         self.val = 0
         self.toString = ''
         self.deep = 0
         self.size = 0
-        self.public = PublicDefine()
+        # self.public = PublicDefine()
 
     def makeTree(self, deep, termSet, funcSet):
         self.deep = 1
         self.size = 1
-        self.root = Node()
         if random() <= 0.5:
             genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root,
-                                 method=self.public.grow, deep=deep, prob=random())
+                                 method=public.grow, deep=deep, prob=random())
         else:
             genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root,
-                                 method=self.public.full, deep=deep, prob=random())
+                                 method=public.full, deep=deep, prob=random())
 
-        if self.root.getType() == self.public.func:
+        if self.root.getType() == public.func:
             self.toString = self.root.getVal().getName()
             for i in range(self.root.getVal().getArity()):
                 child = Tree()
-                child.root = Node()
                 if random() <= 0.5:
                     genNode.generateNode(termSet=termSet, funcSet=funcSet, node=child.root,
-                                         method=self.public.grow,deep=deep - 1, prob=random())
+                                         method=public.grow,deep=deep - 1, prob=random())
                 else:
                     genNode.generateNode(termSet=termSet, funcSet=funcSet, node=child.root,
-                                         method=self.public.full,deep=deep - 1, prob=random())
+                                         method=public.full,deep=deep - 1, prob=random())
                 child.makeTree(deep=deep - 1, termSet=termSet, funcSet= funcSet)
                 self.children.append(child)
 
@@ -67,7 +66,6 @@ class Tree(object):
         self.val = 0
         if self.root.getType() != self.public.func:
             self.toString = ''
-
         else:
             self.toString = self.root.getVal().getName()
         for child in self.children:
@@ -90,7 +88,7 @@ class Tree(object):
 
     def getSize(self):
         'NOTION: This method can ONLY using ONCE !'
-        if self.root.getType() != self.public.func:
+        if self.root.getType() != public.func:
             self.size = 1
             return self.size
         for child in self.children:
