@@ -31,6 +31,7 @@ def subTreeMutation(sourceTree, index, funcSet, termSet):
         sourceTree.deep = subTree.deep
         sourceTree.size = subTree.size
         sourceTree.public = subTree.public
+        sourceTree.clearTree()
         return None
     for i in range(len(sourceTree.children)):
         index -= sourceTree.children[i].size

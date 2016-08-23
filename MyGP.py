@@ -48,38 +48,45 @@ print 'main tree size %d' % tree.size
 
 print tree.displayTree()
 
+
 # ************** cross Test **************
-
-print '_main tree val %d' % _tree.val
-
-print '_main tree fitness %d' % _tree.fitness
-
-print '_main tree deep %d' % _tree.deep
-
-print '_main tree size %d' % _tree.size
-
-print _tree.displayTree()
-
-newTree = opKit.corssovers(tree_a=tree, tree_b=_tree)
-
-newTree.calVal(varList=varList)
-
-newTree.calFitness(fit=fitness, varList=varList)
-
-newTree.getDeep()
-
-newTree.getSize()
-
-print newTree.displayTree()
-
-# ************** mutation Test **************
-# print 'mutation operation...\n'
+# print '_main tree val %d' % _tree.val
 #
-# newTree = osKit.mutation(tree, funcSet=funcSet, termSet=termSet)
+# print '_main tree fitness %d' % _tree.fitness
+#
+# print '_main tree deep %d' % _tree.deep
+#
+# print '_main tree size %d' % _tree.size
+#
+# print _tree.displayTree()
+#
+# newTree = opKit.corssovers(tree_a=tree, tree_b=_tree)
 #
 # newTree.calVal(varList=varList)
 #
 # newTree.calFitness(fit=fitness, varList=varList)
+#
+# newTree.getDeep()
+#
+# newTree.getSize()
+#
+# print newTree.displayTree()
+
+
+# ************** mutation Test **************
+# print 'mutation operation...\n'
+#
+# newTree = opKit.mutation(tree, funcSet=funcSet, termSet=termSet)
+#
+# newTree.calVal(varList=varList)
+#
+# newTree.calFitness(fit=fitness, varList=varList)
+#
+# newTree.getSize()
+#
+# newTree.getDeep()
+#
+# print newTree.displayTree()
 #
 
 # ************** sub tree Test **************
