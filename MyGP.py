@@ -4,7 +4,7 @@ from Components.Tree import Tree
 from Components.Fitness import Fitness
 from random import random
 
-import Kits.Operations as osKit
+import Kits.Operations as opKit
 import Kits.Functions as funcKit
 
 termSet = TerminalSet(var=['x', 'y', 'z'], const=[i for i in range(10)])
@@ -42,15 +42,22 @@ print 'main tree size %d' % tree.size
 
 print tree.displayTree()
 
-print 'mutation operation...\n'
+# ************** cross Test **************
 
-newTree = osKit.mutation(tree, funcSet=funcSet, termSet=termSet)
+opKit.corssovers(tree, tree)
 
-newTree.calVal(varList=varList)
+# ************** mutation Test **************
+# print 'mutation operation...\n'
+#
+# newTree = osKit.mutation(tree, funcSet=funcSet, termSet=termSet)
+#
+# newTree.calVal(varList=varList)
+#
+# newTree.calFitness(fit=fitness, varList=varList)
+#
 
-newTree.calFitness(fit=fitness, varList=varList)
-
-print newTree.displayTree()
+# ************** sub tree Test **************
+# print newTree.displayTree()
 
 # index = random() * tree.size
 #

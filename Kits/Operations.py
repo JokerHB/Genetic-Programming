@@ -6,13 +6,21 @@ def corssovers(tree_a, tree_b):
     tree_A = deepcopy(tree_a)
     tree_B = deepcopy(tree_b)
 
-    index = random() * tree_A.getSize()
+    index = int(random() * tree_A.getSize())
+    subTreeList = []
+    getSubTreeList(tree=tree_B, deep=3, sublist=subTreeList)
+
+    for tree in subTreeList:
+        print tree.displayTree()
+
+    tree_A.clearTree()
+    return tree_A
 
 
 def mutation(tree, funcSet, termSet):
     _tree = deepcopy(tree)
     index = int(random() * _tree.size)
-    print 'mutation index %d' % index
+    # print 'mutation index %d' % index
     subTreeMutation(sourceTree=_tree, index=index, funcSet=funcSet, termSet=termSet)
     _tree.clearTree()
     return _tree
@@ -40,3 +48,12 @@ def subTreeMutation(sourceTree, index, funcSet, termSet):
         elif index == 0:
             subTreeMutation(sourceTree=sourceTree.children[i], index=sourceTree.children[i].size - 1, funcSet=funcSet, termSet=termSet)
             break
+
+def getSubTreeList(tree, deep, sublist):
+    if tree.deep <= deep and tree not in sublist:
+        sublist.append(tree)
+
+    for child in tree.children:
+        if child.deep <= deep:
+            sublist.append(child)
+        getSubTreeList(tree=child, deep=deep, sublist=sublist)

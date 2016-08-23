@@ -78,15 +78,15 @@ class Tree(object):
 
     def getDeep(self):
         'NOTION: This method can ONLY using ONCE !'
-        if self.root.getType() != self.public.func:
+        if len(self.children) == 0:
             self.deep = 1
             return self.deep
-        deepList = []
-        for child in self.children:
-            child.deep += child.getDeep()
-            deepList.append(child.deep)
-        self.deep = max(deepList)
-        return self.deep
+        else:
+            deepList = []
+            for child in self.children:
+                deepList.append(child.getDeep() + 1)
+            self.deep = max(deepList)
+            return self.deep
 
     def getSize(self):
         'NOTION: This method can ONLY using ONCE !'
@@ -115,7 +115,7 @@ class Tree(object):
         # function type node
         if self.root.getType() == self.public.func:
             # content += self.toString + ': ' + str(self.val) + ' : ' + str(self.size) +'\n'
-            content += self.toString + ': ' + str(self.val) + '\n'
+            content += self.toString + '(' + str(self.val) + ')' + ': d: ' + str(self.deep) + ' s: ' + str(self.size) + '\n'
         else:
             # terminal type node
             self.toString = str(self.root.getVal())
