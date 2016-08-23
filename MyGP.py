@@ -15,10 +15,11 @@ add_func = FunctionSet(name='add', func=funcKit.add, arity=2)
 sub_func = FunctionSet(name='sub', func=funcKit.sub, arity=2)
 mul_func = FunctionSet(name='mul', func=funcKit.mul, arity=2)
 mod_func = FunctionSet(name='mod', func=funcKit.mod, arity=2)
+dev_func = FunctionSet(name='dev', func=funcKit.dev, arity=2)
 
 termSet = TerminalSet(var=['x', 'y'], const=[i for i in range(10)])
 
-funcSet = [add_func, sub_func, mul_func, mod_func]
+funcSet = [add_func, sub_func, mul_func, mod_func, dev_func]
 
 fitness = Fitness(funcKit.fitnessFnc)
 
@@ -35,6 +36,5 @@ if __name__ == '__main__':
     ans.calVal(varList=varDict)
     ans.calFitness(varList=varDict, fit=fitness)
 
-    print 'fitness is %d' % ans.fitness
-
+    print '%s , fitness is %d,' % (str(varDict), ans.fitness)
     print ans.displayTree()
