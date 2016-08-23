@@ -1,5 +1,9 @@
 'This is an test file'
 
+import Kits.GenerateNode as genNode
+from Kits.PublicDefine import PublicDefine
+from random import random
+
 # def generateNode(termSet, funcSet, node, method, deep, prob):
 #     if deep == 0 or random <= prob:
 #         nodeVal = namedtuple('NodeVal', ['type', 'val'])
@@ -27,15 +31,10 @@ def func(val):
 
 func(111)
 
-import Kits.GenerateNode as genNode
-from Kits.PublicDefine import PublicDefine
-from random import random
-
 p = PublicDefine()
 
 
 # print genNode.PublicDefine.grow
-
 print p.grow
 print random()
 

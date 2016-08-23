@@ -2,6 +2,7 @@ from Components.TerminalSet import TerminalSet
 from Components.FunctionSet import FunctionSet
 from Components.Tree import Tree
 from Components.Fitness import Fitness
+from random import random
 
 import Kits.Functions as funcKit
 
@@ -20,7 +21,7 @@ varList = {'x':2, 'y':1}
 
 tree = Tree()
 
-tree.makeTree(deep=3, termSet=termSet, funcSet=funcSet)
+tree.makeTree(deep=5, termSet=termSet, funcSet=funcSet)
 
 tree.calVal(varList=varList)
 
@@ -39,3 +40,23 @@ print 'main tree deep %d' % tree.deep
 print 'main tree size %d' % tree.size
 
 print tree.displayTree()
+
+index = random() * tree.size
+
+index = int(index)
+
+print 'index is %d\n' % index
+
+tree.getSubTree(index=index)
+
+# for i in range(100):
+#
+#     index = random() * tree.size
+#
+#     index = int(index)
+#
+#     print 'index is %d\n' % index
+#
+#     tree.getSubTree(index=index)
+#
+#     print '-----------------------------'

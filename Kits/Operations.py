@@ -1,5 +1,14 @@
+from copy import deepcopy
+from random import random
+
 def Corssovers(tree_a, tree_b):
-    pass
+    tree_A = deepcopy(tree_a)
+    tree_B = deepcopy(tree_b)
+
+    index = random() * tree_A.getSize()
+
 
 def Mutation(tree):
-    pass
+    _tree = deepcopy(tree)
+
+    index = random() * _tree.getSize()

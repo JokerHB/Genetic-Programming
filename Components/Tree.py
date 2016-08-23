@@ -82,14 +82,27 @@ class Tree(object):
             self.size = 1
             return self.size
         for child in self.children:
-            child.size += len(child.children)
-            self.size += child.size
+            self.size += child.getSize()
         return self.size
+
+    def getSubTree(self, index):
+        if index == 0:
+            print self.displayTree()
+        for child in self.children:
+            index -= child.size
+            if index < 0:
+                index += child.size - 1
+                child.getSubTree(index=index)
+                break
+            elif index == 0:
+                child.getSubTree(index=child.size - 1)
+                break
 
     def displayTree(self, deep = 1):
         content = ' ' * deep
         # function type node
         if self.root.getType() == self.public.func:
+            # content += self.toString + ': ' + str(self.val) + ' : ' + str(self.size) +'\n'
             content += self.toString + ': ' + str(self.val) + '\n'
         else:
             # terminal type node
