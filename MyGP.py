@@ -2,11 +2,12 @@ from Components.TerminalSet import TerminalSet
 from Components.FunctionSet import FunctionSet
 from Components.Tree import Tree
 from Components.Fitness import Fitness
+from random import random
 
 import Kits.Operations as osKit
 import Kits.Functions as funcKit
 
-termSet = TerminalSet(var=['x', 'y'], const=[1,2,3,4,5])
+termSet = TerminalSet(var=['x', 'y', 'z'], const=[i for i in range(10)])
 
 add_func = FunctionSet(name='add', func=funcKit.add, arity=2)
 sub_func = FunctionSet(name='sub', func=funcKit.sub, arity=2)
@@ -17,7 +18,7 @@ funcSet = [add_func, sub_func, mul_func, mod_func]
 
 fitness = Fitness(funcKit.fitnessFnc)
 
-varList = {'x':2, 'y':1}
+varList = {'x':2, 'y':1, 'z': 10}
 
 tree = Tree()
 

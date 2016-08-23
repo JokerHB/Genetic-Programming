@@ -21,8 +21,7 @@ def subTreeMutation(sourceTree, index, funcSet, termSet):
     if index == 0:
         subTree = Tree()
         subTree.makeTree(deep=sourceTree.getDeep(), funcSet=funcSet, termSet=termSet)
-        print 'new Tree'
-        print subTree.displayTree()
+        # MARK: This part need to be REWRITE
         sourceTree.root = subTree.root
         sourceTree.children = subTree.children
         sourceTree.fitness = subTree.fitness

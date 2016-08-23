@@ -77,6 +77,7 @@ class Tree(object):
         self.fitness = abs(fit.getFitness(varList=varList) - self.val)
 
     def getDeep(self):
+        'NOTION: This method can ONLY using ONCE !'
         if self.root.getType() != self.public.func:
             self.deep = 1
             return self.deep
@@ -88,6 +89,7 @@ class Tree(object):
         return self.deep
 
     def getSize(self):
+        'NOTION: This method can ONLY using ONCE !'
         if self.root.getType() != self.public.func:
             self.size = 1
             return self.size
