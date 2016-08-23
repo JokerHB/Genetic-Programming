@@ -26,8 +26,12 @@ tree.calVal(varList=varList)
 
 tree.calFitness(fit=fitness, varList=varList)
 
+tree.getDeep()
+
 print 'main tree val %d' % tree.val
 
 print 'main tree fitness %d' % tree.fitness
+
+print 'main tree deep %d' % tree.deep
 
 print tree.displayTree()

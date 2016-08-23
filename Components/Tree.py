@@ -14,9 +14,13 @@ class Tree(object):
         self.fitness = 0
         self.val = 0
         self.toString = ''
+        self.deep = 0
+        self.size = 0
         self.public = PublicDefine()
 
     def makeTree(self, deep, termSet, funcSet):
+        self.deep = 1
+        self.size = 1
         self.root = Node()
         if random() <= 0.5:
             genNode.generateNode(termSet=termSet, funcSet=funcSet, node=self.root,
@@ -62,11 +66,27 @@ class Tree(object):
     def calFitness(self, fit ,varList):
         self.fitness = abs(fit.getFitness(varList=varList) - self.val)
 
+    def getDeep(self):
+        if self.root.getType() != self.public.func:
+            self.deep = 1
+            return self.deep
+        deepList = []
+        for child in self.children:
+            child.deep += child.getDeep()
+            deepList.append(child.deep)
+        self.deep = max(deepList)
+        return self.deep
+
+    def getSize(self):
+        pass
+
     def displayTree(self, deep = 1):
         content = ' ' * deep
-        if self.toString != '':
+        # function type node
+        if self.root.getType() == self.public.func:
             content += self.toString + ': ' + str(self.val) + '\n'
         else:
+            # terminal type node
             self.toString = str(self.root.getVal())
             content += self.toString + '\n'
         for child in self.children:

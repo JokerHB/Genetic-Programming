@@ -3,7 +3,7 @@ from PublicDefine import PublicDefine
 
 def generateNode(termSet, funcSet, node, method, deep, prob):
     public = PublicDefine()
-    if deep == 0 or (method == public.grow and random() <= prob):
+    if deep == 1 or (method == public.grow and random() <= prob):
         if random() >= prob:
             # node.type = public.const
             node.setType(public.const)
