@@ -59,6 +59,9 @@ class Tree(object):
             self.val = self.root.getVal().runFunc(vars)
             return self.val
 
+    def calFitness(self, fit ,varList):
+        self.fitness = abs(fit.getFitness(varList=varList) - self.val)
+
     def displayTree(self, deep = 1):
         content = ' ' * deep
         if self.toString != '':

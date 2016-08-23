@@ -14,10 +14,20 @@ mod_func = FunctionSet(name='mod', func=funcKit.mod, arity=2)
 
 funcSet = [add_func, sub_func, mul_func, mod_func]
 
+fitness = Fitness(funcKit.fitnessFnc)
+
+varList = {'x':2, 'y':1}
+
 tree = Tree()
 
 tree.makeTree(deep=3, termSet=termSet, funcSet=funcSet)
 
-print tree.calVal({'x':2, 'y':1})
+tree.calVal(varList=varList)
+
+tree.calFitness(fit=fitness, varList=varList)
+
+print 'main tree val %d' % tree.val
+
+print 'main tree fitness %d' % tree.fitness
 
 print tree.displayTree()

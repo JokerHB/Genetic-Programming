@@ -25,5 +25,17 @@ def mod(varList):
             ans %= _
     return ans
 
+def dev(varList):
+    ans = varList[0]
+    for _ in varList[1:]:
+        if _ == 0:
+            ans /= 1
+        else:
+            ans /= _
+    return ans
+
 def fitnessFnc(varList):
-    pass
+    'x^2 + 2x + y + 5'
+    x = varList['x']
+    y = varList['y']
+    return x ** 2 + 2 * x + y + 5
