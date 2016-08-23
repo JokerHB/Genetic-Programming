@@ -78,7 +78,13 @@ class Tree(object):
         return self.deep
 
     def getSize(self):
-        pass
+        if self.root.getType() != self.public.func:
+            self.size = 1
+            return self.size
+        for child in self.children:
+            child.size += len(child.children)
+            self.size += child.size
+        return self.size
 
     def displayTree(self, deep = 1):
         content = ' ' * deep

@@ -28,10 +28,14 @@ tree.calFitness(fit=fitness, varList=varList)
 
 tree.getDeep()
 
+tree.getSize()
+
 print 'main tree val %d' % tree.val
 
 print 'main tree fitness %d' % tree.fitness
 
 print 'main tree deep %d' % tree.deep
+
+print 'main tree size %d' % tree.size
 
 print tree.displayTree()
