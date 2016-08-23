@@ -7,7 +7,7 @@ import Kits.Operations as genop
 import Kits.Functions as genfunc
 
 class Evolve(object):
-    def __init__(self, funcSet, termSet, fit, varDict, maxDeep = 3,
+    def __init__(self, funcSet, termSet, fit, varDict, maxDeep = 5,
                  crosRate = 0.9, mutaRate = 0.1, size = 100, generation = 10):
         self.funcSet = funcSet
         self.termSet = termSet
@@ -23,8 +23,8 @@ class Evolve(object):
     def init(self):
         for i in range(self.size):
             _ = Tree()
-            deep = int(random() * self.maxDeep)
-            _.makeTree(deep=deep, termSet=self.termSet, funcSet=self.funcSet)
+            _.makeTree(deep=self.maxDeep, termSet=self.termSet, funcSet=self.funcSet)
+            _.getSize()
             self.population.append(_)
 
     def evolve(self):
@@ -36,13 +36,19 @@ class Evolve(object):
                 individual.calFitness(fit=self.fit, varList=self.varDict)
             self.population.sort(cmp=genfunc.treeSort, reverse=True)
             _population = []
-            for j in range(int(self.crosRate * self.size)):
+            for j in range(int(self.crosRate * self.size) - 1):
                 _ = genop.corssovers(self.population[j], self.population[j + 1])
                 _population.append(_)
             for j in range(int(self.mutaRate * self.size)):
                 _ = genop.mutation(tree=choice(self.population), termSet=self.termSet, funcSet=self.funcSet)
                 _population.append(_)
             self.population = _population
+
+        for _ in self.population:
+            _.clearTree()
+            _.getDeep()
+            _.getSize()
+            _.calVal(self.varDict)
+            _.calFitness(fit=self.fit, varList=self.varDict)
         self.population.sort(cmp=genfunc.treeSort, reverse=True)
-        print self.population
         return self.population[0]
