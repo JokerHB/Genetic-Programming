@@ -1,14 +1,43 @@
 from copy import deepcopy
 from random import random
+from Components.Tree import Tree
 
-def Corssovers(tree_a, tree_b):
+def corssovers(tree_a, tree_b):
     tree_A = deepcopy(tree_a)
     tree_B = deepcopy(tree_b)
 
     index = random() * tree_A.getSize()
 
 
-def Mutation(tree):
+def mutation(tree, funcSet, termSet):
     _tree = deepcopy(tree)
+    index = int(random() * _tree.size)
+    print 'mutation index %d' % index
+    subTreeMutation(sourceTree=_tree, index=index, funcSet=funcSet, termSet=termSet)
+    _tree.clearTree()
+    return _tree
 
-    index = random() * _tree.getSize()
+def subTreeMutation(sourceTree, index, funcSet, termSet):
+    if index == 0:
+        subTree = Tree()
+        subTree.makeTree(deep=sourceTree.getDeep(), funcSet=funcSet, termSet=termSet)
+        print 'new Tree'
+        print subTree.displayTree()
+        sourceTree.root = subTree.root
+        sourceTree.children = subTree.children
+        sourceTree.fitness = subTree.fitness
+        sourceTree.val = subTree.val
+        sourceTree.toString = subTree.toString
+        sourceTree.deep = subTree.deep
+        sourceTree.size = subTree.size
+        sourceTree.public = subTree.public
+        return None
+    for i in range(len(sourceTree.children)):
+        index -= sourceTree.children[i].size
+        if index < 0:
+            index += sourceTree.children[i].size - 1
+            subTreeMutation(sourceTree=sourceTree.children[i], index=index, funcSet=funcSet, termSet=termSet)
+            break
+        elif index == 0:
+            subTreeMutation(sourceTree=sourceTree.children[i], index=sourceTree.children[i].size - 1, funcSet=funcSet, termSet=termSet)
+            break

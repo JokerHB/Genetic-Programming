@@ -19,25 +19,47 @@ from random import random
 #             var = termSet.getVar(index=index)
 #         return nodeVal._make([str(type), str(var)])
 
-def func(val):
-    func_a = 33
-    print func_a
-    if val >= 10:
-        global func_a
-        print func_a
-    else:
-        func_a = 2
-        print func_a
+# def func(val):
+#     func_a = 33
+#     print func_a
+#     if val >= 10:
+#         global func_a
+#         print func_a
+#     else:
+#         func_a = 2
+#         print func_a
+#
+# func(111)
+#
+# p = PublicDefine()
+#
+#
+# # print genNode.PublicDefine.grow
+# print p.grow
+# print random()
+#
+# print range(10)
+#
+# print 1 % 0
 
-func(111)
 
-p = PublicDefine()
+class A(object):
+    def __init__(self, val):
+        self. a = val
 
+def replace(a):
+    _a = A(4)
+    # a = _a
+    a.a = 3
+    print id(a)
 
-# print genNode.PublicDefine.grow
-print p.grow
-print random()
+test_a = A(1)
 
-print range(10)
+print test_a.a
 
-print 1 % 0
+print id(test_a)
+
+replace(test_a)
+
+print test_a.a
+

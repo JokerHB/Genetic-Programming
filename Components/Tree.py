@@ -1,7 +1,5 @@
 from Components.Node import Node
 from random import random
-from Components.FunctionSet import FunctionSet
-from Components.TerminalSet import TerminalSet
 from Kits.PublicDefine import PublicDefine
 
 import Kits.GenerateNode as genNode
@@ -62,6 +60,18 @@ class Tree(object):
                 vars.append(tmp_var)
             self.val = self.root.getVal().runFunc(vars)
             return self.val
+
+    def clearTree(self):
+        self.size = 1
+        self.deep = 1
+        self.val = 0
+        if self.root.getType() != self.public.func:
+            self.toString = ''
+
+        else:
+            self.toString = self.root.getVal().getName()
+        for child in self.children:
+            child.clearTree()
 
     def calFitness(self, fit ,varList):
         self.fitness = abs(fit.getFitness(varList=varList) - self.val)

@@ -2,8 +2,8 @@ from Components.TerminalSet import TerminalSet
 from Components.FunctionSet import FunctionSet
 from Components.Tree import Tree
 from Components.Fitness import Fitness
-from random import random
 
+import Kits.Operations as osKit
 import Kits.Functions as funcKit
 
 termSet = TerminalSet(var=['x', 'y'], const=[1,2,3,4,5])
@@ -41,13 +41,23 @@ print 'main tree size %d' % tree.size
 
 print tree.displayTree()
 
-index = random() * tree.size
+print 'mutation operation...\n'
 
-index = int(index)
+newTree = osKit.mutation(tree, funcSet=funcSet, termSet=termSet)
 
-print 'index is %d\n' % index
+newTree.calVal(varList=varList)
 
-tree.getSubTree(index=index)
+newTree.calFitness(fit=fitness, varList=varList)
+
+print newTree.displayTree()
+
+# index = random() * tree.size
+#
+# index = int(index)
+#
+# print 'index is %d\n' % index
+#
+# tree.getSubTree(index=index)
 
 # for i in range(100):
 #
