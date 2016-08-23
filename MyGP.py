@@ -21,16 +21,22 @@ fitness = Fitness(funcKit.fitnessFnc)
 varList = {'x':2, 'y':1, 'z': 10}
 
 tree = Tree()
+_tree = Tree()
 
 tree.makeTree(deep=5, termSet=termSet, funcSet=funcSet)
+_tree.makeTree(deep=5, termSet=termSet, funcSet=funcSet)
 
 tree.calVal(varList=varList)
+_tree.calVal(varList=varList)
 
 tree.calFitness(fit=fitness, varList=varList)
+_tree.calFitness(fit=fitness, varList=varList)
 
 tree.getDeep()
+_tree.calFitness(fit=fitness, varList=varList)
 
 tree.getSize()
+_tree.getSize()
 
 print 'main tree val %d' % tree.val
 
@@ -44,7 +50,27 @@ print tree.displayTree()
 
 # ************** cross Test **************
 
-opKit.corssovers(tree, tree)
+print '_main tree val %d' % _tree.val
+
+print '_main tree fitness %d' % _tree.fitness
+
+print '_main tree deep %d' % _tree.deep
+
+print '_main tree size %d' % _tree.size
+
+print _tree.displayTree()
+
+newTree = opKit.corssovers(tree_a=tree, tree_b=_tree)
+
+newTree.calVal(varList=varList)
+
+newTree.calFitness(fit=fitness, varList=varList)
+
+newTree.getDeep()
+
+newTree.getSize()
+
+print newTree.displayTree()
 
 # ************** mutation Test **************
 # print 'mutation operation...\n'

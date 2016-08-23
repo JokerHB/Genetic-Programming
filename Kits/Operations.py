@@ -5,17 +5,10 @@ from Components.Tree import Tree
 def corssovers(tree_a, tree_b):
     tree_A = deepcopy(tree_a)
     tree_B = deepcopy(tree_b)
-
-    index = int(random() * tree_A.getSize())
-    subTreeList = []
-    getSubTreeList(tree=tree_B, deep=3, sublist=subTreeList)
-
-    for tree in subTreeList:
-        print tree.displayTree()
-
+    index_a = int(random() * tree_A.size)
+    subTreeCorssovers(sourceTree=tree_A, index=index_a, subTree=tree_B)
     tree_A.clearTree()
     return tree_A
-
 
 def mutation(tree, funcSet, termSet):
     _tree = deepcopy(tree)
@@ -57,3 +50,30 @@ def getSubTreeList(tree, deep, sublist):
         if child.deep <= deep:
             sublist.append(child)
         getSubTreeList(tree=child, deep=deep, sublist=sublist)
+
+def subTreeCorssovers(sourceTree, index, subTree):
+    if index == 0:
+        subTreeList = []
+        getSubTreeList(tree=subTree, deep=sourceTree.deep, sublist=subTreeList)
+        index_b = int(random() * len(subTreeList))
+        _subTree = subTreeList[index_b]
+        # MARK: This part need to be REWRITE
+        sourceTree.root = _subTree.root
+        sourceTree.children = _subTree.children
+        sourceTree.fitness = _subTree.fitness
+        sourceTree.val = _subTree.val
+        sourceTree.toString = _subTree.toString
+        sourceTree.deep = _subTree.deep
+        sourceTree.size = _subTree.size
+        sourceTree.public = _subTree.public
+        sourceTree.clearTree()
+        return None
+    for i in range(len(sourceTree.children)):
+        index -= sourceTree.children[i].size
+        if index < 0:
+            index += sourceTree.children[i].size - 1
+            subTreeCorssovers(sourceTree=sourceTree.children[i], index=index, subTree=subTree)
+            break
+        elif index == 0:
+            subTreeCorssovers(sourceTree=sourceTree.children[i], index=sourceTree.children[i].size - 1, subTree=subTree)
+            break
