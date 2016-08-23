@@ -8,7 +8,7 @@ import Kits.Functions as genfunc
 
 class Evolve(object):
     def __init__(self, funcSet, termSet, fit, varDict, maxDeep = 3,
-                 crosRate = 0.9, mutaRate = 0.1, size = 10, generation = 10):
+                 crosRate = 0.9, mutaRate = 0.1, size = 100, generation = 10):
         self.funcSet = funcSet
         self.termSet = termSet
         self.maxDeep = maxDeep
@@ -32,7 +32,7 @@ class Evolve(object):
             for individual in self.population:
                 individual.getDeep()
                 individual.getSize()
-                individual.calVal()
+                individual.calVal(self.varDict)
                 individual.calFitness(fit=self.fit, varList=self.varDict)
             self.population.sort(cmp=genfunc.treeSort, reverse=True)
             _population = []
@@ -44,4 +44,5 @@ class Evolve(object):
                 _population.append(_)
             self.population = _population
         self.population.sort(cmp=genfunc.treeSort, reverse=True)
+        print self.population
         return self.population[0]

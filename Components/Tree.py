@@ -42,10 +42,10 @@ class Tree(object):
 
     def calVal(self, varList):
         'varList is a dictionary of x:1, y: 2, z: 3 ...'
-        if self.root.getType() == self.public.const:
+        if self.root.getType() == public.const:
             self.val = self.root.getVal()
             return self.val
-        elif self.root.getType() == self.public.var:
+        elif self.root.getType() == public.var:
             try:
                 self.val = varList[self.root.getVal()]
             except Exception, e:
@@ -64,7 +64,7 @@ class Tree(object):
         self.size = 1
         self.deep = 1
         self.val = 0
-        if self.root.getType() != self.public.func:
+        if self.root.getType() != public.func:
             self.toString = ''
         else:
             self.toString = self.root.getVal().getName()
@@ -111,7 +111,7 @@ class Tree(object):
     def displayTree(self, deep = 1):
         content = ' ' * deep
         # function type node
-        if self.root.getType() == self.public.func:
+        if self.root.getType() == public.func:
             # content += self.toString + ': ' + str(self.val) + ' : ' + str(self.size) +'\n'
             content += self.toString + '(' + str(self.val) + ')' + ': d: ' + str(self.deep) + ' s: ' + str(self.size) + '\n'
         else:

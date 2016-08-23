@@ -66,7 +66,7 @@ def subTreeCorssovers(sourceTree, index, subTree):
         sourceTree.toString = _subTree.toString
         sourceTree.deep = _subTree.deep
         sourceTree.size = _subTree.size
-        sourceTree.public = _subTree.public
+        # sourceTree.public = _subTree.public
         sourceTree.clearTree()
         return None
     for i in range(len(sourceTree.children)):

@@ -34,8 +34,8 @@ def dev(varList):
             ans /= _
     return ans
 
-def treeSort(tree):
-    return tree.fitness
+def treeSort(treeA, tree_B):
+    return treeA.fitness < tree_B.fitness
 
 def fitnessFnc(varList):
     'x^2 + 2x + y + 5'
