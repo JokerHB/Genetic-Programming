@@ -35,9 +35,20 @@ def dev(varList):
     return ans
 
 def treeSort(treeA, treeB):
+    """
+    compare function of tree
+    :param treeA: tree
+    :param treeB: another tree
+    :return:
+    """
     return treeB.fitness - treeA.fitness
 
 def fitnessFnc(varList):
+    """
+    fitness function
+    :param varList: dict, dictionary of variable and its value
+    :return:
+    """
     'x^2 + 2x + y + 5'
     x = varList['x']
     y = varList['y']

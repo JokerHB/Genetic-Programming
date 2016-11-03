@@ -18,6 +18,13 @@ class Tree(object):
         # self.public = PublicDefine()
 
     def makeTree(self, deep, termSet, funcSet):
+        """
+        build a tree with terminal set and function set that deep is determined
+        :param deep:
+        :param termSet:
+        :param funcSet:
+        :return:
+        """
         self.deep = 1
         self.size = 1
         if random() <= 0.5:
@@ -41,6 +48,11 @@ class Tree(object):
                 self.children.append(child)
 
     def calVal(self, varList):
+        """
+        get the value of the tree
+        :param varList:
+        :return:
+        """
         'varList is a dictionary of x:1, y: 2, z: 3 ...'
         if self.root.getType() == public.const:
             self.val = self.root.getVal()
@@ -61,6 +73,10 @@ class Tree(object):
             return self.val
 
     def clearTree(self):
+        """
+        reset the tee
+        :return:
+        """
         self.size = 1
         self.deep = 1
         self.val = 0
@@ -75,6 +91,10 @@ class Tree(object):
         self.fitness = abs(fit.getFitness(varList=varList) - self.val)
 
     def getDeep(self):
+        """
+        get the deep of the tree, value stored in self.deep
+        :return: deep
+        """
         'NOTION: This method can ONLY using ONCE !'
         if len(self.children) == 0:
             self.deep = 1
@@ -87,6 +107,10 @@ class Tree(object):
             return self.deep
 
     def getSize(self):
+        """
+        get the size of the tree, value stored in self.size
+        :return: size
+        """
         'NOTION: This method can ONLY using ONCE !'
         if self.root.getType() != public.func:
             self.size = 1
@@ -96,6 +120,11 @@ class Tree(object):
         return self.size
 
     def getSubTree(self, index):
+        """
+        get the sub tree from the index
+        :param index:
+        :return:
+        """
         if index == 0:
             print self.displayTree()
         for child in self.children:
@@ -109,6 +138,11 @@ class Tree(object):
                 break
 
     def displayTree(self, deep = 1):
+        """
+        display the tree from the deep
+        :param deep:
+        :return:
+        """
         content = ' ' * deep
         # function type node
         if self.root.getType() == public.func:

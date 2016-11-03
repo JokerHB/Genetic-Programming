@@ -1,3 +1,7 @@
+"""
+public define
+"""
+
 class Singleton(type):
     def __init__(self,name,bases,class_dict):
         super(Singleton,self).__init__(name,bases,class_dict)

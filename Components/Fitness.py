@@ -1,4 +1,7 @@
 class Fitness(object):
+    """
+    fitness function class, provide the method of calculating the fitness
+    """
     def __init__(self, func = None):
         self.func = func
 

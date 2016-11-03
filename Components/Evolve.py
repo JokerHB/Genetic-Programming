@@ -9,6 +9,18 @@ import Kits.Functions as genfunc
 class Evolve(object):
     def __init__(self, funcSet, termSet, fit, varDict, maxDeep = 5,
                  crosRate = 0.9, mutaRate = 0.1, size = 1000, generation = 13):
+        """
+        initialize the evolve algorithm
+        :param funcSet: function set
+        :param termSet: terminal set
+        :param fit:
+        :param varDict:
+        :param maxDeep:
+        :param crosRate: cross rate
+        :param mutaRate: mutation rate
+        :param size: max trees of the gp
+        :param generation: iteration times of the tree
+        """
         self.funcSet = funcSet
         self.termSet = termSet
         self.maxDeep = maxDeep
@@ -21,6 +33,10 @@ class Evolve(object):
         self.population = []
 
     def init(self):
+        """
+        initialize the tree
+        :return:
+        """
         for i in range(self.size):
             _ = Tree()
             _.makeTree(deep=self.maxDeep, termSet=self.termSet, funcSet=self.funcSet)
@@ -37,7 +53,7 @@ class Evolve(object):
             self.population.sort(cmp=genfunc.treeSort, reverse=True)
             _population = []
             for j in range(int(self.crosRate * self.size) - 1):
-                _ = genop.corssovers(self.population[j], self.population[j + 1])
+                _ = genop.crossovers(self.population[j], self.population[j + 1])
                 _population.append(_)
             for j in range(int(self.mutaRate * self.size)):
                 _ = genop.mutation(tree=choice(self.population), termSet=self.termSet, funcSet=self.funcSet)

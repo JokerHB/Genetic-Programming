@@ -4,6 +4,16 @@ from PublicDefine import PublicDefine
 public = PublicDefine()
 
 def generateNode(termSet, funcSet, node, method, deep, prob):
+    """
+    generate the node in the tree
+    :param termSet:
+    :param funcSet:
+    :param node:
+    :param method:
+    :param deep:
+    :param prob:
+    :return:
+    """
     if deep == 1 or (method == public.grow and random() <= prob):
         if random() >= prob:
             # node.type = public.const

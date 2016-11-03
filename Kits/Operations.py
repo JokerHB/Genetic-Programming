@@ -2,11 +2,17 @@ from copy import deepcopy
 from random import random
 from Components.Tree import Tree
 
-def corssovers(tree_a, tree_b):
+def crossovers(tree_a, tree_b):
+    """
+    cross operation with tree_a and tree_b
+    :param tree_a:
+    :param tree_b:
+    :return: new tree that produced by tree_a and bree_b
+    """
     tree_A = deepcopy(tree_a)
     tree_B = deepcopy(tree_b)
     index_a = int(random() * tree_A.size)
-    subTreeCorssovers(sourceTree=tree_A, index=index_a, subTree=tree_B)
+    subTreeCrossovers(sourceTree=tree_A, index=index_a, subTree=tree_B)
     tree_A.clearTree()
     return tree_A
 
@@ -44,6 +50,13 @@ def subTreeMutation(sourceTree, index, funcSet, termSet):
             break
 
 def getSubTreeList(tree, deep, sublist):
+    """
+    get sub tree of the tee
+    :param tree: source tree
+    :param deep: the deep of the 
+    :param sublist:
+    :return:
+    """
     if tree.deep <= deep and tree not in sublist:
         sublist.append(tree)
 
@@ -52,7 +65,14 @@ def getSubTreeList(tree, deep, sublist):
             sublist.append(child)
         getSubTreeList(tree=child, deep=deep, sublist=sublist)
 
-def subTreeCorssovers(sourceTree, index, subTree):
+def subTreeCrossovers(sourceTree, index, subTree):
+    """
+    do the cross operation
+    :param sourceTree: source tree
+    :param index: cross point of the source tree
+    :param subTree:
+    :return:
+    """
     if index == 0:
         subTreeList = []
         getSubTreeList(tree=subTree, deep=sourceTree.deep, sublist=subTreeList)
@@ -73,8 +93,8 @@ def subTreeCorssovers(sourceTree, index, subTree):
         index -= sourceTree.children[i].size
         if index < 0:
             index += sourceTree.children[i].size - 1
-            subTreeCorssovers(sourceTree=sourceTree.children[i], index=index, subTree=subTree)
+            subTreeCrossovers(sourceTree=sourceTree.children[i], index=index, subTree=subTree)
             break
         elif index == 0:
-            subTreeCorssovers(sourceTree=sourceTree.children[i], index=sourceTree.children[i].size - 1, subTree=subTree)
+            subTreeCrossovers(sourceTree=sourceTree.children[i], index=sourceTree.children[i].size - 1, subTree=subTree)
             break
